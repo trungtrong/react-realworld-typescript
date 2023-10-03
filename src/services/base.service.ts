@@ -88,7 +88,7 @@ const Auth = {
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     Auth,
-    setToken: (_token: string | undefined) => {
+    setToken: (_token: string) => {
         token = _token;
     },
 };

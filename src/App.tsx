@@ -9,6 +9,7 @@ import Register from './components/Register';
 import {Link, createBrowserRouter} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
 import Settings from './components/Settings';
+import ArticleEditor from './components/editor/Editor';
 
 export default function App() {
     // @ts-ignore
@@ -31,6 +32,7 @@ export default function App() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<Register />} />
                 <Route path="/settings" element={<Settings />} />
+                <Route path="/editor/:id" element={<ArticleEditor />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </main>

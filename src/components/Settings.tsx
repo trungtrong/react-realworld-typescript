@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react';
-import {Navigate, useNavigate} from 'react-router';
+import {useNavigate} from 'react-router';
 import ListErrors from './ListErrors';
 import {UserStorage} from '../store/user.storage';
 import UserAPI from '../services/user.service';
@@ -110,7 +110,6 @@ function SettingsForm({ updateInProgress }: { updateInProgress: Function }) {
 
             if (data?.user) {
                 UserStorage.storeUserInfo({ user: user })
-                navigate(`/`);
             }
         } catch (error) {
 

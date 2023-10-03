@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { userService } from '../store/user.service';
+import { userService } from '../store/user.interactions';
 import { UserModel } from '../models';
 
 export default function Header({}: any) {
@@ -41,7 +41,7 @@ const LoggedInView = (props: any) => {
                 </li>
                 <li className="nav-item">
                     <NavLink
-                        to="/editor"
+                        to="/editor/new"
                         end={true}
                         caseSensitive={true}
                         className="nav-link"

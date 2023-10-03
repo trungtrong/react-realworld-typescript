@@ -1,6 +1,6 @@
 import { UserModel } from '../models';
 import agent from '../services/base.service';
-import { userService } from './user.service';
+import { userService } from './user.interactions';
 
 const USER_INFO = 'user_info'
 const ACCESS_TOKEN = 'user_atk'
@@ -32,8 +32,8 @@ export class UserStorage {
         agent.setToken(accessToken);
     }
 
-    static getAccessToken() {
-        return window.localStorage.getItem(ACCESS_TOKEN);
+    static getAccessToken(): string {
+        return window.localStorage.getItem(ACCESS_TOKEN) as string;
     }
 
     static isLoggedIn() {

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { SERVER_BASE_URL } from "../utils/constant";
+import { UserStorage } from "../store/user.storage";
 
 const UserAPI = {
     login: async (email: any, password: any) => {
@@ -36,10 +37,7 @@ const UserAPI = {
     },
     updateUserInfo: async (user: any) => {
       try {
-        const userString: any = window.localStorage.getItem("user");
-        const user = JSON.parse(userString);
-        const token = user?.token;
-
+        const token: string = UserStorage.getAccessToken();
         const response = await axios.put(
           `${SERVER_BASE_URL}/user`,
           JSON.stringify({ user: user }),
@@ -56,9 +54,7 @@ const UserAPI = {
       }
     },
     current: async () => {
-      const userString: any = window.localStorage.getItem("user");
-      const user = JSON.parse(userString);
-      const token = user?.token;
+      const token: string = UserStorage.getAccessToken();
       //
       try {
           const response = await axios.get(`/user`, {
@@ -72,9 +68,7 @@ const UserAPI = {
       } 
     },
     follow: async (username: string) => {
-      const userString: any = window.localStorage.getItem("user");
-      const user = JSON.parse(userString);
-      const token = user?.token;
+      const token: string = UserStorage.getAccessToken();
       try {
         const response = await axios.post(
           `${SERVER_BASE_URL}/profiles/${username}/follow`,
@@ -91,9 +85,7 @@ const UserAPI = {
       }
     },
     unFollow: async (username: string) => {
-      const userString: any = window.localStorage.getItem("user");
-      const user = JSON.parse(userString);
-      const token = user?.token;
+      const token: string = UserStorage.getAccessToken();
       try {
         const response = await axios.delete(
           `${SERVER_BASE_URL}/profiles/${username}/follow`,
