@@ -67,6 +67,23 @@ const UserAPI = {
         return error.response;
       } 
     },
+    getUserProfile: async (profileId: string) => {
+      try {
+        const token: string = UserStorage.getAccessToken();
+        const response = await axios.get(
+          `${SERVER_BASE_URL}/profiles/${encodeURIComponent(String(profileId))}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Token ${encodeURIComponent(token)}`
+            },
+          }
+        );
+        return response;
+      }  catch (error: any) {
+          return error.response;
+      }
+    },
     follow: async (username: string) => {
       const token: string = UserStorage.getAccessToken();
       try {

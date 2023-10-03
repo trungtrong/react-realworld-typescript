@@ -10,6 +10,7 @@ import {Link, createBrowserRouter} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
 import Settings from './components/Settings';
 import ArticleEditor from './components/editor/Editor';
+import ProfileDetail from './components/profile/ProfileDetail';
 
 export default function App() {
     // @ts-ignore
@@ -33,6 +34,7 @@ export default function App() {
                 <Route path="/sign-up" element={<Register />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/editor/:id" element={<ArticleEditor />} />
+                <Route path="/profile/:username" element={<ProfileDetail />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </main>
