@@ -5,7 +5,7 @@ const API_ROOT = 'https://conduit.productionready.io/api';
 //
 let token: string = '';
 
-const requests = {
+export const BASE_API = {
     get: async (url: string) => {
         try {
             const { data, status } = await axios.get(
@@ -79,9 +79,9 @@ const requests = {
     //     Promise.resolve({user: {username, email, password}})
 const Auth = {
     register: (username: string, email: string, password: string) =>
-        requests.post('/users', {user: {username, email, password}}),
+        BASE_API.post('/users', {user: {username, email, password}}),
     login: (email: string, password: string) =>
-        requests.post('/users/login', {user: {email, password}}),
+        BASE_API.post('/users/login', {user: {email, password}}),
 };
 //#endregion
 

@@ -2,11 +2,12 @@ import Pagination from "../common/Pagination";
 import { useParams } from "react-router";
 import useViewPort from "../../hooks/useViewPort";
 import { DEFAULT_LIMIT, SERVER_BASE_URL } from "../../utils/constant";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Maybe from "../Maybe";
 import ArticlePreview from "./ArticlePreview";
+import { BASE_API } from "../../services/base.service";
 
 export default function ArticleList() {
     const { vw } = useViewPort();
@@ -14,7 +15,7 @@ export default function ArticleList() {
     const { favorite, follow, tag, pid } = params;
     const page = 0;
     const [lastIndex, setLastIndex] = useState(0);
-    const [error, setError] = useState(false);
+    const [errors, setErrors] = useState(false);
     const [data, setData] = useState(undefined);
 
     //
@@ -46,11 +47,25 @@ export default function ArticleList() {
             break;
     }
 
-    useEffect(() => {
+    const getArticleList = useCallback(async () => {
+        try {
+            const { data, status } = await BASE_API.get(fetchURL);
+            if (status !== 200) {
+                setErrors(data.errors.body);
+            }
+            //
+            setData(data);
+        } catch(error) {
 
+        } finally {
+
+        }
+    }, []);
+    useEffect(() => {
+        getArticleList();
     }, []);
 
-    if (error) {
+    if (errors) {
         return (
             <div className="col-md-9">
                 <div className="feed-toggle">
