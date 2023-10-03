@@ -1,101 +1,89 @@
-import {useState} from 'react';
+import {useCallback, useState} from 'react';
 import {useNavigate} from 'react-router';
-import {Link} from 'react-router-dom';
 import ListErrors from './ListErrors';
-import agent from '../agent';
+import agent from '../services/base.service';
 import { UserStorage } from '../store/user.storage';
 
-export default function Login() {
+export default function LoginForm() {
     const navigate = useNavigate();
-    /**
-     * Warning: A component is changing an uncontrolled input to be controlled. 
-     * This is likely caused by the value changing from undefined to a defined value, which should not happen. Decide between using a controlled or uncontrolled input element for the lifetime of the component.
-     */
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    //
+    const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
-    const [inProgress, setInProgress] = useState(false);
+    const [email, setEmail] = useState('');
+    const [password, setPassword]= useState('');
 
-    const changeEmail = (event: any) => {
+    const handleEmailChange = useCallback((event: any) => {
         setEmail(event.target.value);
-    };
+    }, []);
 
-    const changePassword = (event: any) => {
+    const handlePasswordChange = useCallback((event: any) => {
         setPassword(event.target.value);
-    };
+    }, []);
 
-    const submitForm = async (event: any) => {
+    const handleSubmit = async (event: any) => {
         event.preventDefault();
-        setInProgress(true);
+        setIsLoading(true);
         //
         try {
-            const res = await agent.Auth.login(email, password);
-            if (!!res?.errors?.length) {
-                setErrors(res?.errors?.length ? res?.errors : []);
-                setInProgress(false);
+            const { data } = await agent.Auth.login(email, password);
+            if (!!data?.errors?.length) {
+                setErrors(data?.errors?.length ? data?.errors : []);
+                setIsLoading(false);
                 return;
             }
-            if (!res || !res?.user?.token) {
-                setInProgress(false);
+            if (!data || !data?.user?.token) {
+                setIsLoading(false);
                 return;
             }
             //
-            UserStorage.storeUserInfo(res.user);
+            UserStorage.storeUserInfo({
+                user: data.user,
+                accessToken: data.user.token
+            });
             navigate('/');
-        } catch (res: any) {
-            if (!!res?.errors?.length) {
-                setErrors(res?.errors?.length ? res?.errors : []);
+        } catch (error: any) {
+            if (!!error?.errors?.length) {
+                setErrors(error?.errors?.length ? error?.errors : []);
             }
-            setInProgress(false);
+            setIsLoading(false);
         }
-    };
+    }
 
     return (
-        <div className="auth-page">
-            <div className="container page">
-                <div className="row">
-                    <div className="col-md-6 offset-md-3 col-xs-12">
-                        <h1 className="text-xs-center">Sign Up</h1>
-                        <p className="text-xs-center">
-                            <Link to="/sign-up">Need an account?</Link>
-                        </p>
+        <>
+            <ListErrors errors={errors}></ListErrors>
 
-                        <ListErrors errors={errors}></ListErrors>
-                        <form>
-                            <fieldset>
-                                <fieldset className="form-group">
-                                    <input
-                                        className="form-control form-control-lg"
-                                        type="email"
-                                        placeholder="Email"
-                                        value={email}
-                                        onChange={changeEmail}
-                                    />
-                                </fieldset>
+            <form onSubmit={handleSubmit}>
+                <fieldset>
+                <fieldset className="form-group">
+                    <input
+                    className="form-control form-control-lg"
+                    type="email"
+                    placeholder="Email"
+                    value={email}
+                    onChange={handleEmailChange}
+                    />
+                </fieldset>
 
-                                <fieldset className="form-group">
-                                    <input
-                                        className="form-control form-control-lg"
-                                        type="password"
-                                        placeholder="Password"
-                                        value={password}
-                                        onChange={changePassword}
-                                    />
-                                </fieldset>
-                            </fieldset>
-                        </form>
+                <fieldset className="form-group">
+                    <input
+                    className="form-control form-control-lg"
+                    type="password"
+                    placeholder="Password"
+                    value={password}
+                    onChange={handlePasswordChange}
+                    />
+                </fieldset>
 
-                        <button
-                            className="btn btn-lg btn-primary pull-xs-right"
-                            type="submit"
-                            disabled={inProgress}
-                            onClick={submitForm}
-                        >
-                            Sign In
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+                <button
+                    className="btn btn-lg btn-primary pull-xs-right"
+                    type="submit"
+                    disabled={isLoading}
+                >
+                    Sign in
+                </button>
+                </fieldset>
+            </form>
+        </>
+    )
 }

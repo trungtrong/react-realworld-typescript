@@ -1,23 +1,23 @@
 import {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { UserStorage } from '../store/user.storage';
+import { userService } from '../store/user.service';
+import { UserModel } from '../models';
 
-export default function Header({appName, isLoggedIn}: any) {
-    const [currentUser, setCurrentUser] = useState(null);
+export default function Header({}: any) {
+    const [currentUser, setCurrentUser] = useState<UserModel | undefined>(undefined);
 
     useEffect(() => {
-        if (isLoggedIn) {
-            setCurrentUser(UserStorage.getUserInfo());
-        } else {
-            setCurrentUser(null);
-        }
-    }, [isLoggedIn]);
+        const subscription = userService.userSubject.subscribe((user) => {
+            setCurrentUser(user);
+        });
+        return () => subscription.unsubscribe();
+    }, []);
 
     return (
         <nav className="navbar navbar-light">
             <div className="container">
                 <Link to="/" className="navbar-brand">
-                    {appName.toLowerCase()}
+                    Conduilt
                 </Link>
                 <LoggedInView currentUser={currentUser}></LoggedInView>
             </div>

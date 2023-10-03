@@ -8,6 +8,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import {Link, createBrowserRouter} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
+import Settings from './components/Settings';
 
 export default function App() {
     // @ts-ignore
@@ -29,6 +30,7 @@ export default function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/sign-up" element={<Register />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="*" element={<NoMatch />} />
             </Routes>
         </main>

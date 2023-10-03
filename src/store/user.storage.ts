@@ -1,4 +1,6 @@
-import agent from '../agent';
+import { UserModel } from '../models';
+import agent from '../services/base.service';
+import { userService } from './user.service';
 
 const USER_INFO = 'user_info'
 const ACCESS_TOKEN = 'user_atk'
@@ -7,19 +9,19 @@ export class UserStorage {
     /**
      * @param user: { bio: string, email: string; image: string, token: string; username: string }
      */
-    static storeUserInfo(user: any) {
-        if (!user || !user?.token) {
-            return;
+    static storeUserInfo(params: { user: UserModel, accessToken?: string}) {
+        window.localStorage.setItem(USER_INFO, JSON.stringify(params.user));
+        userService.updateUser(params.user);
+        if (params.accessToken) {
+            this.storeAccessToken(params.accessToken);
         }
-        window.localStorage.setItem(USER_INFO, JSON.stringify(user));
-        this.storeAccessToken(user.token);
     }
 
     static getUserInfo() {
         const userInfoString = window.localStorage.getItem(USER_INFO);
         return userInfoString 
             ? JSON.parse(userInfoString)
-            : {}; 
+            : undefined; 
     }
 
     static storeAccessToken(accessToken: string) {
@@ -36,5 +38,12 @@ export class UserStorage {
 
     static isLoggedIn() {
         return !!this.getAccessToken();
+    }
+
+    static removeUserInfo() {
+        window.localStorage.removeItem(USER_INFO);
+        window.localStorage.removeItem(ACCESS_TOKEN);
+        userService.removeUser();
+        agent.setToken('');
     }
 }

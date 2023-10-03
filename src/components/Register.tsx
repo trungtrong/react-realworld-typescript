@@ -1,7 +1,7 @@
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 //
-import agent from '../agent';
+import agent from '../services/base.service';
 import ListErrors from './ListErrors';
 import { UserStorage } from '../store/user.storage';
 
@@ -41,7 +41,10 @@ export default function Register() {
                 return;
             }
             //
-            UserStorage.storeUserInfo(res.user);
+            UserStorage.storeUserInfo({
+                user: res.user,
+                accessToken: res.user.token
+            });            
             navigate('/');
         } catch (res: any) {
             if (!!res?.errors?.length) {
