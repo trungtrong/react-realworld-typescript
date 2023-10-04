@@ -1,16 +1,18 @@
-import {useEffect, useState} from 'react';
+import {Suspense, lazy, useEffect, useState} from 'react';
 //
 import './App.css';
 import Header from './components/Header';
-import {Route, RouterProvider, Routes, createRoutesFromElements} from 'react-router';
-import Home from './components/Home';
-import Login from './components/Login';
-import Register from './components/Register';
-import {Link, createBrowserRouter} from 'react-router-dom';
+import {Route, Routes} from 'react-router';
+import {Link} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
-import Settings from './components/Settings';
-import ArticleEditor from './components/editor/Editor';
-import ProfileDetail from './components/profile/ProfileDetail';
+//
+const Home = lazy(() => import('./components/Home'));
+const Login = lazy(() => import('./components/Login'));
+const Register = lazy(() => import('./components/Register'));
+const Settings = lazy(() => import('./components/Settings'));
+const ArticleEditor = lazy(() => import('./components/editor/Editor'));
+const ProfileDetail = lazy(() => import('./components/profile/ProfileDetail'));
+
 
 export default function App() {
     // @ts-ignore
@@ -28,15 +30,17 @@ export default function App() {
                 isLoggedIn={isLoggedIn}
             ></Header>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/sign-up" element={<Register />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/editor/:id" element={<ArticleEditor />} />
-                <Route path="/profile/:username" element={<ProfileDetail />} />
-                <Route path="*" element={<NoMatch />} />
-            </Routes>
+            <Suspense fallback={<div>Loading...</div>}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/sign-up" element={<Register />} />
+                    <Route path="/settings" element={<Settings />} />
+                    <Route path="/editor/:id" element={<ArticleEditor />} />
+                    <Route path="/profile/:username" element={<ProfileDetail />} />
+                    <Route path="*" element={<NoMatch />} />
+                </Routes>
+            </Suspense>
         </main>
     );
 }
