@@ -17,3 +17,7 @@ a.active {
   text-decoration: underline;
   color: blue;
 }
+
+.navbar-blue {
+  background-color: blue;
+}

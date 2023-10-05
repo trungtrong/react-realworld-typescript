@@ -2,8 +2,12 @@ import {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
 import { userService } from '../../store/user.interactions';
 import { UserModel } from '../../models';
+//
+import styles from './index.module.css';
+import './../another.css'; // Import regular stylesheet
+//
 
-export default function Header({}: any) {
+const Header = () => {
     const [currentUser, setCurrentUser] = useState<UserModel | undefined>(undefined);
 
     useEffect(() => {
@@ -14,7 +18,7 @@ export default function Header({}: any) {
     }, []);
 
     return (
-        <nav className="navbar navbar-light">
+        <nav className={'navbar navbar-light navbar-blue ' + styles['navbar-red']}>
             <div className="container">
                 <Link to="/" className="navbar-brand">
                     Conduilt
@@ -24,6 +28,8 @@ export default function Header({}: any) {
         </nav>
     );
 }
+
+export default Header;
 
 const LoggedInView = (props: any) => {
     if (props.currentUser) {
