@@ -1,10 +1,10 @@
 import {Suspense, lazy, useEffect, useState} from 'react';
 //
 import './App.css';
-import Header from './components/Header';
 import {Route, Routes} from 'react-router';
 import {Link} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
+import Header from './components/Header';
 //
 const Home = lazy(() => import('./components/Home'));
 const Login = lazy(() => import('./components/Login'));
@@ -17,7 +17,7 @@ const ProfileDetail = lazy(() => import('./components/profile/ProfileDetail'));
 export default function App() {
     // @ts-ignore
     const appName = 'RealWorld Exam';
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(UserStorage.isLoggedIn());
 
     useEffect(() => {
         setIsLoggedIn(UserStorage.isLoggedIn());
@@ -25,10 +25,7 @@ export default function App() {
 
     return (
         <main>
-            <Header
-                appName={appName}
-                isLoggedIn={isLoggedIn}
-            ></Header>
+            <Header></Header>
 
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>

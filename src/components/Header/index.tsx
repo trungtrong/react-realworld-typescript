@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { userService } from '../store/user.interactions';
-import { UserModel } from '../models';
+import { userService } from '../../store/user.interactions';
+import { UserModel } from '../../models';
 
 export default function Header({}: any) {
     const [currentUser, setCurrentUser] = useState<UserModel | undefined>(undefined);

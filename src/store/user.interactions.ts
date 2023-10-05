@@ -1,8 +1,11 @@
 import { BehaviorSubject } from "rxjs";
 import { UserModel } from "../models";
-import { UserStorage } from "./user.storage";
-
-const _userSubject$ = new BehaviorSubject<UserModel | undefined>(UserStorage.getUserInfo());
+//
+const _userSubject$ = new BehaviorSubject<UserModel | undefined>(undefined);
+// TODO: Fix issue that User.Interactions.ts init before UserStorage init
+import("./user.storage").then((module) => {
+    userService.updateUser(module.UserStorage.getUserInfo())
+});
 
 export const userService = {
     userSubject: _userSubject$.asObservable(),
