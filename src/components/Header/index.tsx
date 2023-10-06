@@ -20,7 +20,7 @@ const Header = () => {
     return (
         <nav className={'navbar navbar-light navbar-blue ' + styles['navbar-red']}>
             <div className="container">
-                <Link to="/" className="navbar-brand">
+                <Link to="/" className="navbar-brand text-blue-00AFFF font-weight-300">
                     Conduilt
                 </Link>
                 <LoggedInView currentUser={currentUser}></LoggedInView>
