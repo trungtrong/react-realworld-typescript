@@ -1,4 +1,16 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 import rootReducer from "./reducers";
+import thunk from 'redux-thunk';
 
-export default createStore(rootReducer);
+const middlewares = [ thunk ];
+ 
+if (process.env.NODE_ENV === `development`) {
+  const { logger } = require(`redux-logger`);
+ 
+  middlewares.push(logger);
+}
+
+export default createStore(
+    rootReducer,
+    applyMiddleware(...middlewares)
+);
