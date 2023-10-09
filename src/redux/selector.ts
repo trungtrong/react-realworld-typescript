@@ -1,37 +1,50 @@
+import { createSelector } from 'reselect'
 import { AppStateKeyFeatureEnum } from "./app-feature-key.enums";
 import { VISIBILITY_FILTERS } from "./reducers/visibilityFilter.reducer";
 
-export const getTodosState = (store: any) => {
-    return store[AppStateKeyFeatureEnum.ToDos];
-};
+const getTodosState = (store: any) => store[AppStateKeyFeatureEnum.ToDos];
+const getVisibilityFilterState = (state: any) => state[AppStateKeyFeatureEnum.VisibilityFilter];
 
-export const getTodoList = (store: any) => {
-    console.log(getTodosState(store));
-    console.log(getTodosState(store).addIds);
-    return !!getTodosState(store)?.addIds?.length ? getTodosState(store).addIds : []
-}
+export const getTodoLists = createSelector(
+  [getTodosState],
+  (todos) => {
+    console.log(getTodosState(todos));
+    console.log(getTodosState(todos).addIds);
+    return !!todos.addIds?.length ? todos.addIds : []
+  }
+)
 
-export const getTodoById = (store: any, id: string) => {
-    return getTodosState(store) ? { ...getTodosState(store).byIds[id], id } : {};
+export const getTodoById = (todos: any[], id: string) => {
+    // @ts-ignore
+    return todos ? { ...todos.byIds[id], id } : {};
 }
 /**
  * example of a slightly more complex selector
  * select from store combining information from multiple reducers
  */
+export const getTodos = createSelector(
+  [getTodosState],
+  (todos) => {
+    console.log(getTodosState(todos));
 
-export const getTodos = (store: any) => {
-    return getTodoList(store).map((id: string) => getTodoById(store, id))
-};
+    return !!todos.addIds?.length 
+      ? todos.addIds.map((id: string) => getTodoById(todos, id))
+      : []
+  }
+)
 
-  export const getTodosByVisibilityFilter = (store: any, visibilityFilter: any) => {
-    const allTodos = getTodos(store);
+// A library for creating memoized "selector" functions
+export const getTodosByVisibilityFilter = createSelector(
+  [getVisibilityFilterState, getTodos],
+  (visibilityFilter, todos) => {
     switch (visibilityFilter) {
       case VISIBILITY_FILTERS.COMPLETED:
-        return allTodos.filter((todo: any) => todo.completed);
+        return todos.filter((todo: any) => todo.completed);
       case VISIBILITY_FILTERS.INCOMPLETE:
-        return allTodos.filter((todo: any) => !todo.completed);
+        return todos.filter((todo: any) => !todo.completed);
       case VISIBILITY_FILTERS.ALL:
       default:
-        return allTodos;
+        return todos;
     }
-  };
+  }
+)
