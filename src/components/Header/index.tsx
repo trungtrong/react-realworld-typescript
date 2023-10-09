@@ -67,6 +67,16 @@ const LoggedInView = (props: any) => {
                 </li>
                 <li className="nav-item">
                     <NavLink
+                        to="/todos"
+                        end={true}
+                        caseSensitive={true}
+                        className="nav-link"
+                    >
+                        <i className="ion-gear-a"></i>ToDo List
+                    </NavLink>
+                </li>
+                <li className="nav-item">
+                    <NavLink
                         to={`/profile/${props.currentUser.username}`}
                         end={true}
                         caseSensitive={true}

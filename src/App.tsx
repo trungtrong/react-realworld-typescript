@@ -5,6 +5,7 @@ import {Route, Routes} from 'react-router';
 import {Link} from 'react-router-dom';
 import {UserStorage} from './store/user.storage';
 import Header from './components/Header';
+import Todos from './components/todos';
 //
 const Home = lazy(() => import('./components/Home'));
 const Login = lazy(() => import('./components/Login'));
@@ -35,6 +36,7 @@ export default function App() {
                     <Route path="/settings" element={<Settings />} />
                     <Route path="/editor/:id" element={<ArticleEditor />} />
                     <Route path="/profile/:username" element={<ProfileDetail />} />
+                    <Route path="/todos" element={<Todos />} />
                     <Route path="*" element={<NoMatch />} />
                 </Routes>
             </Suspense>
