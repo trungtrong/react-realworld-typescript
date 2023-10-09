@@ -14,10 +14,9 @@ const TodoList = ({ todos }: any) => (
   </ul>
 );
 
+// Store is updated, even though any fields
 const mapStateToProps = (state: any) => {
-  const { visibilityFilter } = state;
-  const todos = getTodosByVisibilityFilter(state, visibilityFilter);
-  return { todos };
+  return { todos: getTodosByVisibilityFilter(state) };
 };
 // export default TodoList;
 export default connect(mapStateToProps)(TodoList);
