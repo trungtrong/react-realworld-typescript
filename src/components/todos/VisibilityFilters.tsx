@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 //
-import { setFilter } from "../../redux/actions";
+import { setFilter } from "../../redux/actions/todo.actions";
 import { VISIBILITY_FILTERS } from "../../redux/reducers/visibilityFilter.reducer";
 
 const VisibilityFilters = ({ activeFilter, setFilter }: any) => {

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { connect } from "react-redux";
 //
-import { addTodo } from "../../redux/actions";
+import { addTodo } from "../../redux/actions/todo.actions";
 
 const AddTodo = ({ addTodo }: any) => {
     const [input, setInput] = useState("");
