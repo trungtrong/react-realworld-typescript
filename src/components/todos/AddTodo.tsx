@@ -28,7 +28,12 @@ const AddTodo = ({ addTodo }: any) => {
     );
 
 }
+
+const mapDispatchToProps = (dispatch: any) => ({
+  addTodo: (input: string) => dispatch(addTodo(input)),
+})
+
 export default connect(
   null,
-  { addTodo }
+  mapDispatchToProps
 )(AddTodo);
