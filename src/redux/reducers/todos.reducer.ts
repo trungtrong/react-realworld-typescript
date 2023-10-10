@@ -1,43 +1,43 @@
-import { ADD_TODO, TOGGLE_TODO } from "../actionTypes";
+import { createSlice } from '@reduxjs/toolkit'
+import { AppStateKeyFeatureEnum } from '../app-feature-key.enums';
 
-const initialState = {
-    addIds: [],
-    byIds: {}
-} as {
-    addIds: string[],
-    byIds: Record<string, { completed: boolean }>
-}
-
-export default function TodosReducer(state = initialState, action: { type: string; payload: any }) {
-    switch (action.type) {
-        case ADD_TODO: {
-            const { id, content } = action.payload;
-            return {
-                ...state,
-                addIds: [ ...state.addIds, id ],
-                byIds: {
-                    ...state.byIds,
-                    [id]: {
-                        content,
-                        completed: false
-                    }
+export const TodosSlice = createSlice({
+    name: AppStateKeyFeatureEnum.ToDos,
+    initialState: {
+        addIds: [],
+        byIds: {}
+    } as {
+        addIds: string[],
+        byIds: Record<string, { content: string; completed: boolean }>
+    },
+    reducers: {
+        addTodo: (state, action) => {
+            const id = (Math.random() * 10).toString();
+            const content = action.payload as string;
+            state.addIds = [ ...state.addIds, id ];
+            state.byIds = {
+                ...state.byIds,
+                [id]: {
+                    content: content,
+                    completed: false
                 }
-            };
-        }
-        case TOGGLE_TODO: {
-            const { id } = action.payload;
-            return {
-                    ...state,
-                    byIds: {
-                        ...state.byIds,
-                        [id]: {
-                            ...state.byIds[id],
-                            completed: !state.byIds[id].completed
-                        }
-                    }
             }
-        }
-        default:
             return state;
+        },
+        toggleTodo: (state, action) => {
+            const id = action.payload;
+            state.byIds = {
+                ...state.byIds,
+                [id]: {
+                    ...state.byIds[id],
+                    completed: !state.byIds[id].completed
+                }
+            }
+            return state;
+        }
     }
-}
+})
+
+export const { addTodo, toggleTodo } = TodosSlice.actions
+
+export default TodosSlice.reducer;

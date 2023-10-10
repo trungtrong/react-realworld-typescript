@@ -3,7 +3,7 @@ import { AppStateKeyFeatureEnum } from "./app-feature-key.enums";
 import { VISIBILITY_FILTERS } from "./reducers/visibilityFilter.reducer";
 
 const getTodosState = (store: any) => store[AppStateKeyFeatureEnum.ToDos];
-const getVisibilityFilterState = (state: any) => state[AppStateKeyFeatureEnum.VisibilityFilter];
+export const getVisibilityFilterState = (state: any) => state[AppStateKeyFeatureEnum.VisibilityFilter];
 
 export const getTodoLists = createSelector(
   [getTodosState],
@@ -30,6 +30,13 @@ export const getTodos = createSelector(
     return !!todos.addIds?.length 
       ? todos.addIds.map((id: string) => getTodoById(todos, id))
       : []
+  }
+)
+
+export const getVisibilityFilter = createSelector(
+  [getVisibilityFilterState],
+  (visibilityFilter) => {
+    return visibilityFilter;
   }
 )
 

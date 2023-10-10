@@ -1,9 +1,20 @@
-import { connect } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 //
-import { setFilter } from "../../redux/actions/todo.actions";
+import { setFilter } from "../../redux/reducers/visibilityFilter.reducer";
 import { VISIBILITY_FILTERS } from "../../redux/reducers/visibilityFilter.reducer";
+import { getVisibilityFilterState } from "../../redux/selector";
 
-const VisibilityFilters = ({ activeFilter, setFilter }: any) => {
+const VisibilityFilters = () => {
+  const dispatch = useDispatch()
+
+  const activeFilter = useSelector(state => {
+    return getVisibilityFilterState(state)
+  })
+  
+  const onFilterChanged = (currentFilter: string) => {
+    dispatch(setFilter(currentFilter))
+  }
+
   return (
     <div className="visibility-filters">
       {Object.keys(VISIBILITY_FILTERS).map((filterKey: string) => {
@@ -13,7 +24,7 @@ const VisibilityFilters = ({ activeFilter, setFilter }: any) => {
             key={`visibility-filter-${currentFilter}`}
             className={ "filter " + currentFilter === activeFilter ? "filter--active" : "" }
             onClick={() => {
-              setFilter(currentFilter);
+              onFilterChanged(currentFilter);
             }}
           >
             {currentFilter}
@@ -24,10 +35,4 @@ const VisibilityFilters = ({ activeFilter, setFilter }: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return { activeFilter: state.visibilityFilter };
-};
-export default connect(
-  mapStateToProps,
-  { setFilter }
-)(VisibilityFilters);
+export default VisibilityFilters;

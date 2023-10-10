@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { connect } from "react-redux";
-//
-import { addTodo } from "../../redux/actions/todo.actions";
+import { addTodo } from "../../redux/reducers/todos.reducer";
+import { useDispatch } from "react-redux";
 
-const AddTodo = ({ addTodo }: any) => {
+const AddTodo = () => {
+    const dispatch = useDispatch()
     const [input, setInput] = useState("");
 
     const updateInput = (input: string) => {
@@ -11,8 +11,8 @@ const AddTodo = ({ addTodo }: any) => {
       };
     
     const handleAddTodo = () => {
-        addTodo(input);
-        setInput("");
+       dispatch(addTodo(input));
+       setInput("");
     };
 
     return (
@@ -29,11 +29,4 @@ const AddTodo = ({ addTodo }: any) => {
 
 }
 
-const mapDispatchToProps = (dispatch: any) => ({
-  addTodo: (input: string) => dispatch(addTodo(input)),
-})
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(AddTodo);
+export default AddTodo;

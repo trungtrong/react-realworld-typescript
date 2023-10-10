@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from "redux";
+import { configureStore } from '@reduxjs/toolkit'
 import rootReducer from "./reducers";
 import thunk from 'redux-thunk';
 
@@ -10,7 +10,19 @@ if (process.env.NODE_ENV === `development`) {
   middlewares.push(logger);
 }
 
+/**
+Way 1:
+import { applyMiddleware, createStore } from "redux";
+
 export default createStore(
     rootReducer,
     applyMiddleware(...middlewares)
 );
+
+*/
+
+// Way 2:
+export default configureStore({ 
+  reducer: rootReducer,
+  middleware: middlewares
+})

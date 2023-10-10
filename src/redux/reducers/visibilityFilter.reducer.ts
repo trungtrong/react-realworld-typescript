@@ -1,4 +1,5 @@
-import { SET_FILTER } from "../actionTypes";
+import { createSlice } from '@reduxjs/toolkit'
+import { AppStateKeyFeatureEnum } from '../app-feature-key.enums';
 
 export const VISIBILITY_FILTERS: Record<string, string> = {
   ALL: "all",
@@ -6,17 +7,16 @@ export const VISIBILITY_FILTERS: Record<string, string> = {
   INCOMPLETE: "incomplete"
 };
 
-const initialState = VISIBILITY_FILTERS.ALL;
-
-const VisibilityFilterReducer = (state = initialState, action: { type: string; payload: any }) => {
-  switch (action.type) {
-    case SET_FILTER: {
-      return action.payload.filter;
-    }
-    default: {
-      return state;
-    }
+export const VisibilityFilterSlice = createSlice({
+  name: AppStateKeyFeatureEnum.VisibilityFilter,
+  initialState: VISIBILITY_FILTERS.ALL,
+  reducers: {
+      setFilter: (state, action) => {
+          return action.payload;
+      },
   }
-};
+})
 
-export default VisibilityFilterReducer;
+export const { setFilter } = VisibilityFilterSlice.actions;
+
+export default VisibilityFilterSlice.reducer;

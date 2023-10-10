@@ -1,19 +1,19 @@
-import { connect } from "react-redux";
-//
-import { toggleTodo } from "../../redux/actions/todo.actions";
+import { useDispatch } from "react-redux";
+import { toggleTodo } from "../../redux/reducers/todos.reducer";
 
-const Todo = ({ todo, toggleTodo }: any) => (
-  <li className="todo-item" onClick={() => toggleTodo(todo.id)}>
-    {todo && todo.completed ? "👌" : "👋"}{" "}
-    <span
-      className={ "todo-item__text " + todo && todo.completed ? "todo-item__text--completed" : '' }
-    >
-      {todo.content}
-    </span>
-  </li>
-);
+const Todo = ({ todo}: any) => {
+  const dispatch = useDispatch();
 
-export default connect(
-    null,
-    { toggleTodo }
-)(Todo);
+  return (
+    <li className="todo-item" onClick={() => dispatch(toggleTodo(todo.id))}>
+      {todo && todo.completed ? "👌" : "👋"}{" "}
+      <span
+        className={ "todo-item__text " + todo && todo.completed ? "todo-item__text--completed" : '' }
+      >
+        {todo.content}
+      </span>
+    </li>
+  )
+};
+
+export default Todo;
