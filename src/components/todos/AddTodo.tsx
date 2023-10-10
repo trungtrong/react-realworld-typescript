@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTodo } from "../../redux/todos/todos.actions";
 
@@ -29,4 +29,4 @@ const AddTodo = () => {
 
 }
 
-export default AddTodo;
+export default memo(AddTodo);

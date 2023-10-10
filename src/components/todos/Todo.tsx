@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { toggleTodo } from "../../redux/todos/todos.actions";
+import { memo } from "react";
 
 const Todo = ({ todo}: any) => {
   const dispatch = useDispatch();
@@ -16,4 +17,4 @@ const Todo = ({ todo}: any) => {
   )
 };
 
-export default Todo;
+export default memo(Todo);

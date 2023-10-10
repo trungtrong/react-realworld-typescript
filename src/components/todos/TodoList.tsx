@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 //
 import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../../redux/selector";
+import { memo } from "react";
 
 const TodoList = () => {
   const todos = useSelector(state =>
@@ -19,4 +20,4 @@ const TodoList = () => {
   );
 }
 
-export default TodoList;
+export default memo(TodoList);

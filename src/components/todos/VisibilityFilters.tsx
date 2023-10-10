@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { VISIBILITY_FILTERS } from "../../redux/visibilityHandler/visibilityFilter.reducer";
 import { getVisibilityFilterState } from "../../redux/selector";
 import { setFilter } from "../../redux/visibilityHandler/visibilityFilter.actions";
+import { memo } from "react";
 
 const VisibilityFilters = () => {
   const dispatch = useDispatch()
@@ -35,4 +36,4 @@ const VisibilityFilters = () => {
   );
 };
 
-export default VisibilityFilters;
+export default memo(VisibilityFilters);

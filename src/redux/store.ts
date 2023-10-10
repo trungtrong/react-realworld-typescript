@@ -30,8 +30,13 @@ export default createStore(
 
 */
 
+
 // Way 2:
-export default configureStore({ 
+// ...
+const store =  configureStore({ 
   reducer: rootReducer,
   middleware: middlewares
 })
+
+export type RootState = ReturnType<typeof store.getState>;
+export default store;
