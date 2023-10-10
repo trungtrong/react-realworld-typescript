@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
 //
-import { setFilter } from "../../redux/reducers/visibilityFilter.reducer";
-import { VISIBILITY_FILTERS } from "../../redux/reducers/visibilityFilter.reducer";
+import { VISIBILITY_FILTERS } from "../../redux/visibilityHandler/visibilityFilter.reducer";
 import { getVisibilityFilterState } from "../../redux/selector";
+import { setFilter } from "../../redux/visibilityHandler/visibilityFilter.actions";
 
 const VisibilityFilters = () => {
   const dispatch = useDispatch()

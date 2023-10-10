@@ -17,6 +17,4 @@ export const VisibilityFilterSlice = createSlice({
   }
 })
 
-export const { setFilter } = VisibilityFilterSlice.actions;
-
 export default VisibilityFilterSlice.reducer;

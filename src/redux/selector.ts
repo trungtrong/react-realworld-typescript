@@ -1,6 +1,6 @@
 import { createSelector } from 'reselect'
 import { AppStateKeyFeatureEnum } from "./app-feature-key.enums";
-import { VISIBILITY_FILTERS } from "./reducers/visibilityFilter.reducer";
+import { VISIBILITY_FILTERS } from "./visibilityHandler/visibilityFilter.reducer";
 
 const getTodosState = (store: any) => store[AppStateKeyFeatureEnum.ToDos];
 export const getVisibilityFilterState = (state: any) => state[AppStateKeyFeatureEnum.VisibilityFilter];

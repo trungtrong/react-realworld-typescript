@@ -1,6 +1,10 @@
-import { configureStore } from '@reduxjs/toolkit'
-import rootReducer from "./reducers";
+import { configureStore, combineReducers } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk';
+//
+import {  } from "redux";
+import { AppStateKeyFeatureEnum } from './app-feature-key.enums';
+import todosReducer from './todos/todos.reducer';
+import visibilityFilterReducer from './visibilityHandler/visibilityFilter.reducer';
 
 const middlewares = [ thunk ];
  
@@ -9,6 +13,11 @@ if (process.env.NODE_ENV === `development`) {
  
   middlewares.push(logger);
 }
+
+const rootReducer = combineReducers({ 
+    [AppStateKeyFeatureEnum.ToDos]: todosReducer,
+    [AppStateKeyFeatureEnum.VisibilityFilter]: visibilityFilterReducer
+});
 
 /**
 Way 1:
