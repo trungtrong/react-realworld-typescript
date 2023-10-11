@@ -3,11 +3,10 @@ import { useSelector } from "react-redux";
 import Todo from "./Todo";
 import { getTodosByVisibilityFilter } from "../../core/store/selector";
 import { memo } from "react";
+import { useAppSelector } from "../../core/store/store";
 
 const TodoList = () => {
-  const todos = useSelector(state =>
-    getTodosByVisibilityFilter(state)
-  )
+  const todos = useAppSelector(state => getTodosByVisibilityFilter(state))
 
   return (
     <ul className="todo-list">

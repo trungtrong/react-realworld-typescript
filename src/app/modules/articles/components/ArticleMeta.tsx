@@ -8,7 +8,7 @@ interface ArticleMetaProps {
 }
   
 const ArticleMeta: React.FC<ArticleMetaProps> = ({ article }) => {
-    if (!article) return;
+    if (!article) return <></>;
 
     return (
         <div className="article-meta">

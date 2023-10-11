@@ -69,3 +69,4 @@
 //   delete: (...args) => api('delete', ...args),
 //   optimisticUpdate,
 // };
+export const ApiService = {};

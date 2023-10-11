@@ -1,9 +1,9 @@
-import { useDispatch } from "react-redux";
 import { toggleTodo } from "../../core/store/todos/todos.actions";
 import { memo } from "react";
+import { useAppDispatch } from "../../core/store/store";
 
 const Todo = ({ todo}: any) => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   return (
     <li className="todo-item" onClick={() => dispatch(toggleTodo(todo.id))}>

@@ -1,9 +1,9 @@
 import { memo, useState } from "react";
-import { useDispatch } from "react-redux";
 import { addTodo } from "../../core/store/todos/todos.actions";
+import { useAppDispatch } from "../../core/store/store";
 
 const AddTodo = () => {
-    const dispatch = useDispatch()
+    const dispatch = useAppDispatch()
     const [input, setInput] = useState("");
 
     const updateInput = (input: string) => {

@@ -4,11 +4,12 @@ import { VISIBILITY_FILTERS } from "../../core/store/visibilityHandler/visibilit
 import { getVisibilityFilterState } from "../../core/store/selector";
 import { setFilter } from "../../core/store/visibilityHandler/visibilityFilter.actions";
 import { memo } from "react";
+import { useAppDispatch, useAppSelector } from "../../core/store/store";
 
 const VisibilityFilters = () => {
-  const dispatch = useDispatch()
+  const dispatch = useAppDispatch()
 
-  const activeFilter = useSelector(state => {
+  const activeFilter = useAppSelector(state => {
     return getVisibilityFilterState(state)
   })
   
