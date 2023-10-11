@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { toggleTodo } from "../../redux/todos/todos.actions";
+import { toggleTodo } from "../../app/core/store/todos/todos.actions";
 import { memo } from "react";
 
 const Todo = ({ todo}: any) => {

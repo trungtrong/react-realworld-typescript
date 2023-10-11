@@ -2,8 +2,8 @@ import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 import CustomLink from "../common/CustomLink";
 import { useCallback, useEffect, useState } from "react";
-import { ArticleInteraction } from "../../store/article.interactions";
-import TagsAPI from "../../services/tags";
+import { ArticleInteraction } from "../../app/core/interactions/article.interactions";
+import TagsAPI from "../../app/core/services/tags";
 
 export default function Tags() {
     // Reset page when clicking on tag to filter Article List by tag

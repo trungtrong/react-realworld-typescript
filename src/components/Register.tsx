@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
 //
-import agent from '../services/base.service';
+import agent from '../app/core/services/base.service';
 import ListErrors from './ListErrors';
-import { UserStorage } from '../store/user.storage';
+import { UserStorage } from '../app/core/interactions/user.storage';
 
 export default function Register() {
     const navigate = useNavigate();

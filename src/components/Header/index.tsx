@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import {Link, NavLink} from 'react-router-dom';
-import { userService } from '../../store/user.interactions';
-import { UserModel } from '../../models';
+import { userService } from '../../app/core/interactions/user.interactions';
+import { UserModel } from '../../app/shared/models';
 //
 import styles from './index.module.css';
 import './../another.css'; // Import regular stylesheet

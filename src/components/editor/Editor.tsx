@@ -1,9 +1,9 @@
 import { useReducer, useState } from "react";
 import TagInput from "../../components/editor/TagInput";
-import editorReducer from "../../reducers/editorReducer";
+import editorReducer from "../../app/core/reducers/editorReducer";
 import { useNavigate, useParams } from "react-router";
 import ListErrors from "../ListErrors";
-import ArticleAPI from "../../services/article";
+import ArticleAPI from "../../app/core/services/article";
 
 const NEW_EDITOR_ID = 'new';
 

@@ -1,4 +1,4 @@
-import { DEFAULT_IMAGE_SOURCE, DEFAULT_PROFILE_IMAGE } from "../../utils/constant";
+import { DEFAULT_IMAGE_SOURCE, DEFAULT_PROFILE_IMAGE } from "../../app/utils/constant";
 
 interface CustomImageProps {
 src: string;

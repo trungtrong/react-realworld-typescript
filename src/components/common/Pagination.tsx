@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import Maybe from "../Maybe";
-import { getPageInfo, getRange } from "../../utils/calculatePagination";
+import { getPageInfo, getRange } from "../../app/utils/calculatePagination";
 
 interface PaginationProps {
   total: number;

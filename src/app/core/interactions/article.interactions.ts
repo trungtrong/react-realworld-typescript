@@ -1,9 +1,5 @@
 import { Subject } from "rxjs"
 
-const initialState = {
-    data: [] as any[],
-    newDataCount: 0
-}
 // Global
 const ArticleInteraction: {
     articleSubject: Subject<any> | null,

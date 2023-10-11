@@ -1,6 +1,6 @@
 import CustomLink from "../common/CustomLink";
 import Maybe from "../Maybe";
-import { UserStorage } from "../../store/user.storage";
+import { UserStorage } from "../../app/core/interactions/user.storage";
 import { useParams } from "react-router";
 
 export default function ArticleActions({ article }: any) {

@@ -1,5 +1,5 @@
 import { BehaviorSubject } from "rxjs";
-import { UserModel } from "../models";
+import { UserModel } from "../../shared/models";
 //
 const _userSubject$ = new BehaviorSubject<UserModel | undefined>(undefined);
 // TODO: Fix issue that User.Interactions.ts init before UserStorage init

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import ArticleList from "../article/ArticleList";
 import TabList from "./TabList";
-import { ArticleInteraction } from "../../store/article.interactions";
+import { ArticleInteraction } from "../../app/core/interactions/article.interactions";
 
 export default function MainView() {
     const [isShow, setIsShow] = useState(false);

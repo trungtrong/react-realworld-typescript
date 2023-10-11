@@ -1,4 +1,4 @@
-import DatePipe from "../../pipes/date.pipe";
+import DatePipe from "../../app/core/pipes/date.pipe";
 import CustomImage from "../common/CustomImage";
 import CustomLink from "../common/CustomLink";
 import ArticleActions from "./ArticleActions";

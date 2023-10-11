@@ -1,8 +1,8 @@
 import {useCallback, useState} from 'react';
 import {useNavigate} from 'react-router';
 import ListErrors from './ListErrors';
-import agent from '../services/base.service';
-import { UserStorage } from '../store/user.storage';
+import agent from '../app/core/services/base.service';
+import { UserStorage } from '../app/core/interactions/user.storage';
 
 export default function LoginForm() {
     const navigate = useNavigate();

@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 //
 import Todo from "./Todo";
-import { getTodosByVisibilityFilter } from "../../redux/selector";
+import { getTodosByVisibilityFilter } from "../../app/core/store/selector";
 import { memo } from "react";
 
 const TodoList = () => {

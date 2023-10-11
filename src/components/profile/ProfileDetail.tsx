@@ -1,13 +1,13 @@
 import { useParams } from "react-router";
 import { useCallback, useEffect, useState } from "react";
-import UserAPI from "../../services/user.service";
-import { UserStorage } from "../../store/user.storage";
+import UserAPI from "../../app/core/services/user.service";
+import { UserStorage } from "../../app/core/interactions/user.storage";
 import ErrorMessage from "../common/ErrorMessage";
 import CustomImage from "../common/CustomImage";
 import Maybe from "../Maybe";
 import EditProfileButton from "./EditProfileButton";
 import FollowUserButton from "./FollowUserButton";
-import { UserProfileModel } from "../../models";
+import { UserProfileModel } from "../../app/shared/models";
 import ProfileTab from "./ProfileTab";
 import ArticleList from "../article/ArticleList";
 

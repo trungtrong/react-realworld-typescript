@@ -1,7 +1,7 @@
 import axios from "axios";
 
-import { SERVER_BASE_URL } from "../utils/constant";
-import { UserStorage } from "../store/user.storage";
+import { SERVER_BASE_URL } from "../../utils/constant";
+import { UserStorage } from "../interactions/user.storage";
 
 const ArticleAPI = {
     addNew: async (newArticle: any) => {

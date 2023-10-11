@@ -1,8 +1,8 @@
 import {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router';
 import ListErrors from './ListErrors';
-import {UserStorage} from '../store/user.storage';
-import UserAPI from '../services/user.service';
+import {UserStorage} from '../app/core/interactions/user.storage';
+import UserAPI from '../app/core/services/user.service';
 
 /**
 Input: CurrentUser

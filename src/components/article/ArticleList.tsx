@@ -1,13 +1,13 @@
 import Pagination from "../common/Pagination";
 import { useParams } from "react-router";
-import useViewPort from "../../hooks/useViewPort";
-import { DEFAULT_LIMIT, SERVER_BASE_URL } from "../../utils/constant";
+import useViewPort from "../../app/core/hooks/useViewPort";
+import { DEFAULT_LIMIT, SERVER_BASE_URL } from "../../app/utils/constant";
 import { useCallback, useEffect, useState } from "react";
 import ErrorMessage from "../common/ErrorMessage";
 import LoadingSpinner from "../common/LoadingSpinner";
 import Maybe from "../Maybe";
 import ArticlePreview from "./ArticlePreview";
-import { BASE_API } from "../../services/base.service";
+import { BASE_API } from "../../app/core/services/base.service";
 
 export default function ArticleList() {
     const { vw } = useViewPort();

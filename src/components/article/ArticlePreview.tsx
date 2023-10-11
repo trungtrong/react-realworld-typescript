@@ -3,11 +3,11 @@ import { useCallback, useState } from "react";
 import CustomLink from "../common/CustomLink";
 import CustomImage from "../common/CustomImage";
 import axios from "axios";
-import { UserStorage } from "../../store/user.storage";
+import { UserStorage } from "../../app/core/interactions/user.storage";
 import { useNavigate } from "react-router";
-import { SERVER_BASE_URL } from "../../utils/constant";
-import DatePipe from "../../pipes/date.pipe";
-import FunctionPipe from "../../pipes/function.pipe";
+import { SERVER_BASE_URL } from "../../app/utils/constant";
+import DatePipe from "../../app/core/pipes/date.pipe";
+import FunctionPipe from "../../app/core/pipes/function.pipe";
 
 const FAVORITED_CLASS = "btn btn-sm btn-primary";
 const NOT_FAVORITED_CLASS = "btn btn-sm btn-outline-primary";

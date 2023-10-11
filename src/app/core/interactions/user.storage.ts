@@ -1,4 +1,4 @@
-import { UserModel } from '../models';
+import { UserModel } from '../../shared/models';
 import agent from '../services/base.service';
 import { userService } from './user.interactions';
 

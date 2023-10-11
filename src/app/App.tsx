@@ -1,18 +1,18 @@
 import {Suspense, lazy, useEffect, useState} from 'react';
 //
-import './App.css';
+import './App.module.css';
 import {Route, Routes} from 'react-router';
 import {Link} from 'react-router-dom';
-import {UserStorage} from './store/user.storage';
-import Header from './components/Header';
-import Todos from './components/todos';
+import {UserStorage} from './core/interactions/user.storage';
+import Header from '../components/Header';
+import Todos from '../components/todos';
 //
-const Home = lazy(() => import('./components/Home'));
-const Login = lazy(() => import('./components/Login'));
-const Register = lazy(() => import('./components/Register'));
-const Settings = lazy(() => import('./components/Settings'));
-const ArticleEditor = lazy(() => import('./components/editor/Editor'));
-const ProfileDetail = lazy(() => import('./components/profile/ProfileDetail'));
+const Home = lazy(() => import('../components/Home'));
+const Login = lazy(() => import('../components/Login'));
+const Register = lazy(() => import('../components/Register'));
+const Settings = lazy(() => import('../components/Settings'));
+const ArticleEditor = lazy(() => import('../components/editor/Editor'));
+const ProfileDetail = lazy(() => import('../components/profile/ProfileDetail'));
 
 
 export default function App() {
