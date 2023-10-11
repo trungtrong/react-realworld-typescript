@@ -1,6 +1,6 @@
 import { memo, useState } from "react";
-import { addTodo } from "../../core/store/todos/todos.actions";
 import { useAppDispatch } from "../../core/store/store";
+import { addTodo } from "src/app/core/store/todos/todos.actions";
 
 const AddTodo = () => {
     const dispatch = useAppDispatch()
