@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 import thunk from 'redux-thunk';
 //
 import {  } from "redux";
@@ -13,12 +13,6 @@ if (process.env.NODE_ENV === `development`) {
  
   middlewares.push(logger);
 }
-
-const rootReducer = combineReducers({ 
-    [AppStateKeyFeatureEnum.ToDos]: todosReducer,
-    [AppStateKeyFeatureEnum.VisibilityFilter]: visibilityFilterReducer
-});
-
 /**
 Way 1:
 import { applyMiddleware, createStore } from "redux";
@@ -34,7 +28,10 @@ export default createStore(
 // Way 2:
 // ...
 const store =  configureStore({ 
-  reducer: rootReducer,
+  reducer: { 
+    [AppStateKeyFeatureEnum.ToDos]: todosReducer,
+    [AppStateKeyFeatureEnum.VisibilityFilter]: visibilityFilterReducer
+  },
   middleware: middlewares
 })
 
