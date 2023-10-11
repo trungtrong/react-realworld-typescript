@@ -3,7 +3,11 @@ import CustomImage from "../../../shared/components/CustomImage";
 import CustomLink from "../../../shared/components/CustomLink";
 import ArticleActions from "./ArticleActions";
 
-export default function ArticleMeta({ article }: any) {
+interface ArticleMetaProps {
+    article: any;
+}
+  
+const ArticleMeta: React.FC<ArticleMetaProps> = ({ article }: any) => {
     if (!article) return;
 
     return (
@@ -33,3 +37,5 @@ export default function ArticleMeta({ article }: any) {
         </div>
     )
 }
+
+export default ArticleMeta;
