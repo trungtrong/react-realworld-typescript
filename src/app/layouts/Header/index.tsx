@@ -3,8 +3,8 @@ import {Link, NavLink} from 'react-router-dom';
 import { userService } from '../../core/interactions/user.interactions';
 import { UserModel } from '../../shared/models';
 //
-import styles from './index.module.css';
-import "./../../../styles/another.css";
+import styles from './index.module.scss';
+import "./../../../styles/another.scss";
 //
 
 const Header = () => {

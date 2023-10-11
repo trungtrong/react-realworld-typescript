@@ -1,6 +1,6 @@
 import {Suspense, lazy, useEffect, useState} from 'react';
 //
-import './App.module.css';
+import './App.module.scss';
 import {Route, Routes} from 'react-router';
 import {Link} from 'react-router-dom';
 import {UserStorage} from './core/interactions/user.storage';
