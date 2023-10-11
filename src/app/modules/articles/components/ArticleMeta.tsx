@@ -7,7 +7,7 @@ interface ArticleMetaProps {
     article: any;
 }
   
-const ArticleMeta: React.FC<ArticleMetaProps> = ({ article }: any) => {
+const ArticleMeta: React.FC<ArticleMetaProps> = ({ article }) => {
     if (!article) return;
 
     return (
